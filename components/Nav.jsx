@@ -114,7 +114,14 @@ const Nav = () => {
         {/* mobile navigation */}
         <div className="sm:hidden flex relative">
           {session?.user ? (
-            <div className="flex">
+            <div className="flex items-center gap-5">
+              <Link
+                href="/create-prompt"
+                className="text-black text text-sm py-1 px-3 rounded-full hover:bg-black hover:text-white border-black border-[1px]"
+                onClick={() => setToggleDropdown(false)}
+              >
+                Create Post
+              </Link>
               <Image
                 src={session?.user.image}
                 alt="impromptu logo"
@@ -133,13 +140,13 @@ const Nav = () => {
                   >
                     My Profile
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/create-prompt"
                     className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium"
                     onClick={() => setToggleDropdown(false)}
                   >
                     Create Prompt
-                  </Link>
+                  </Link> */}
                   <button
                     type="button"
                     onClick={() => {
