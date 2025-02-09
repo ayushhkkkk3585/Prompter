@@ -47,11 +47,11 @@ const Feed = () => {
       <form>
         <input
           type="text"
-          placeholder="Search for a tag or a user"
+          placeholder="Search a tag or a user.."
           value={searchText}
           onChange={handleSearchChange}
           required
-          className="border-2 border-black/40 rounded-md px-6 py-2"
+          className="border-2 border-black/40 rounded-md px-5 py-2"
         />
       </form>
 

@@ -2,15 +2,16 @@
 import { useState } from "react";
 import React from "react";
 import Image from "next/image";
+// import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
-import { CheckCheck, Copy } from "lucide-react";
+import { usePathname } from "next/navigation";
+// import {useRouter} from "next/navigation"
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copied, setCopied] = useState("");
   const { data: session } = useSession();
   const pathName = usePathname();
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleCopy = () => {
     setCopied(post.prompt);
@@ -30,6 +31,16 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
               className="rounded-full object-cover ring-2 ring-gray-200 hover:ring-gray-300 transition-all"
               alt={`${post.creator.username}'s profile`}
             />
+
+            {/* <Link href="/profile">
+              <Image
+                src={post.creator.image}
+                width={50}
+                height={50}
+                className="rounded-full object-cover ring-2 ring-gray-200 hover:ring-gray-300 transition-all"
+                alt={`${post.creator.username}'s profile`}
+              />
+            </Link> */}
           </div>
           <div className="flex flex-col min-w-0">
             <h3 className="font-satoshi font-semibold text-gray-900 text-sm sm:text-lg truncate">
