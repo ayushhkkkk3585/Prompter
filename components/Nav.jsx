@@ -125,7 +125,7 @@ const Nav = () => {
               />
 
               {toggleDropdown && (
-                <div className="dropdown absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end border border-gray-200 shadow-lg">
+                <div className="text dropdown absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end border border-gray-200 shadow-lg">
                   <Link
                     href="/profile"
                     className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium"
