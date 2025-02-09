@@ -12,6 +12,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const { data: session } = useSession();
   const pathName = usePathname();
   // const router = useRouter();
+  console.log(post);
 
   const handleCopy = () => {
     setCopied(post.prompt);
@@ -25,11 +26,11 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         <div className="flex flex-1 items-center gap-3 sm:gap-4">
           <div className="relative">
             <Image
-              src={post.creator.image}
+              src={post?.creator?.image}
               width={50}
               height={50}
               className="rounded-full object-cover ring-2 ring-gray-200 hover:ring-gray-300 transition-all"
-              alt={`${post.creator.username}'s profile`}
+              alt={`${post?.creator?.username}'s profile`}
             />
 
             {/* <Link href="/profile">
@@ -44,10 +45,10 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           </div>
           <div className="flex flex-col min-w-0">
             <h3 className="font-satoshi font-semibold text-gray-900 text-sm sm:text-lg truncate">
-              {post.creator.username}
+              {post?.creator?.username}
             </h3>
             <p className="font-inter text-xs sm:text-sm text-gray-500 truncate">
-              {post.creator.email}
+              {post?.creator?.email}
             </p>
           </div>
         </div>
@@ -78,7 +79,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         >
           {post.tag}
         </p>
-        {session?.user.id === post.creator._id && pathName === "/profile" && (
+        {session?.user.id === post.creator?._id && pathName === "/profile" && (
           <div className="flex justify-center items-center gap-4">
             <p
               className="text-sm font-bold text-green-400 cursor-pointer"
