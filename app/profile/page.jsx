@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Profile from "@components/Profile";
@@ -20,8 +20,8 @@ const MyProfile = () => {
           method: "DELETE",
         });
 
-        const filteredPosts=posts.filter((p)=>p._id !==post._id);
-        setPosts(filteredPosts)
+        const filteredPosts = posts.filter((p) => p._id !== post._id);
+        setPosts(filteredPosts);
       } catch (error) {
         console.log(error);
       }
@@ -39,14 +39,16 @@ const MyProfile = () => {
 
   return (
     <>
-      <Profile
-        name="My"
-        desc="Welcome to the profile page, here you can see all your prompts"
-        data={posts}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-        class
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Profile
+          name="My"
+          desc="Welcome to the profile page, here you can see all your prompts"
+          data={posts}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          class
+        />
+      </Suspense>
     </>
   );
 };
