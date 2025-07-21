@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.text{
+*{
     font-family: 'Satoshi', sans-serif;
 }

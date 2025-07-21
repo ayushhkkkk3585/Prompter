@@ -22,7 +22,7 @@ const Nav = () => {
 
   return (
     <>
-      <nav className="flex justify-between items-center w-full mb-5  p-5">
+      <nav className="flex justify-between items-center w-full mb-5 p-5">
         <Link href="/" className="flex flex-center gap-2">
           <Image
             src="/pencil.jpg"
@@ -54,42 +54,47 @@ const Nav = () => {
                 Sign Out
               </button>
               <div className="relative">
-                <Link href="/profile">
-                  <Image
-                    src={session?.user.image}
-                    alt="profile"
-                    width={30}
-                    height={30}
-                    className="object-contain cursor-pointer rounded-full"
-                    onClick={() => setToggleDesktopDropdown((prev) => !prev)}
-                  />
-                </Link>
+                <Image
+                  src={session?.user.image}
+                  alt="profile"
+                  width={30}
+                  height={30}
+                  className="object-contain cursor-pointer rounded-full"
+                  onClick={() => setToggleDesktopDropdown((prev) => !prev)}
+                />
                 {toggleDesktopDropdown && (
-                  <div className="absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end border border-gray-200 shadow-lg sm:hidden ">
+                  <div className="absolute right-0 top-full mt-3 w-56 p-4 rounded-xl bg-white shadow-lg border border-gray-200 z-10">
                     <Link
                       href="/profile"
-                      className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
                       onClick={() => setToggleDesktopDropdown(false)}
                     >
                       My Profile
                     </Link>
                     <Link
+                      href="/collections"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
+                      onClick={() => setToggleDesktopDropdown(false)}
+                    >
+                      My Collections
+                    </Link>
+                    {/* <Link
                       href="/create-prompt"
-                      className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
                       onClick={() => setToggleDesktopDropdown(false)}
                     >
                       Create Post
-                    </Link>
-                    <button
+                    </Link> */}
+                    {/* <button
                       type="button"
                       onClick={() => {
                         setToggleDesktopDropdown(false);
                         signOut();
                       }}
-                      className="text-center mt-5 w-full bg-black text-white hover:bg-white hover:text-black px-4 py-2 rounded-lg transition-colors duration-200"
+                      className="mt-3 w-full px-4 py-2 bg-black text-white hover:bg-white hover:text-black border border-black rounded-md transition-all"
                     >
                       Sign Out
-                    </button>
+                    </button> */}
                   </div>
                 )}
               </div>
@@ -132,20 +137,27 @@ const Nav = () => {
               />
 
               {toggleDropdown && (
-                <div className="text dropdown absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end border border-gray-200 shadow-lg">
+                <div className="absolute right-0 top-full mt-3 w-56 p-4 rounded-xl bg-white shadow-lg border border-gray-200 z-10">
                   <Link
                     href="/profile"
-                    className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium"
+                    className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
                     onClick={() => setToggleDropdown(false)}
                   >
                     My Profile
                   </Link>
-                  {/* <Link
-                    href="/create-prompt"
-                    className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium"
+                  <Link
+                    href="/collections"
+                    className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
                     onClick={() => setToggleDropdown(false)}
                   >
-                    Create Prompt
+                    My Collections
+                  </Link>
+                  {/* <Link
+                    href="/create-prompt"
+                    className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
+                    onClick={() => setToggleDropdown(false)}
+                  >
+                    Create Post
                   </Link> */}
                   <button
                     type="button"
@@ -153,7 +165,7 @@ const Nav = () => {
                       setToggleDropdown(false);
                       signOut();
                     }}
-                    className="text-center mt-3 w-full bg-black text-white hover:bg-white hover:text-black px-4 py-2 rounded-full transition-colors duration-200"
+                    className="mt-3 w-full px-4 py-2 bg-black text-white hover:bg-white hover:text-black border border-black rounded-md transition-all"
                   >
                     Sign Out
                   </button>

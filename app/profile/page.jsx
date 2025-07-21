@@ -1,17 +1,25 @@
 "use client";
-import React from "react";
-import { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Profile from "@components/Profile";
 
 const MyProfile = () => {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession(); // add status here
   const [posts, setPosts] = useState([]);
+
+  // Redirect if unauthenticated
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/"); // redirect to homepage or login
+    }
+  }, [status, router]);
+
   const handleEdit = (post) => {
     router.push(`/update-prompt?id=${post._id}`);
   };
+
   const handleDelete = async (post) => {
     const confirmed = confirm("Are you sure u want to delete this prompt?");
     if (confirmed) {
@@ -30,12 +38,23 @@ const MyProfile = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch(`/api/users/${session?.user?.id}/posts`);
+      if (!session?.user?.id) return;
+      const res = await fetch(`/api/users/${session.user.id}/posts`);
       const data = await res.json();
       setPosts(data);
     };
-    if (session?.user.id) fetchPosts();
-  }, []);
+
+    if (status === "authenticated") {
+      fetchPosts();
+    }
+  }, [session?.user?.id, status]);
+
+  // Optional: Show loading while auth status is loading
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) return null; // avoid flashing UI before redirect
 
   return (
     <>
@@ -46,7 +65,6 @@ const MyProfile = () => {
           data={posts}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
-          class
         />
       </Suspense>
     </>
