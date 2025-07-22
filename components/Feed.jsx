@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import PromptCard from "./PromptCard";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 
 const PromptCardList = ({ data, handleTagClick }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -26,6 +27,7 @@ const Feed = () => {
   // Pagination state
   const [currentPage, setCurrentPage] = useState(0);
   const postsPerPage = 8;
+  const pathname = usePathname();
 
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
@@ -53,7 +55,7 @@ const Feed = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [pathname]);
 
   // Filter posts based on search
   const filteredPosts = searchText
