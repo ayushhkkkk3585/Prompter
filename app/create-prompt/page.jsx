@@ -39,6 +39,7 @@ const CreatePrompt = () => {
 
       if (res.ok) {
         router.push("/");
+        router.refresh();
       }
     } catch (error) {
       console.log("Failed to create prompt:", error);
